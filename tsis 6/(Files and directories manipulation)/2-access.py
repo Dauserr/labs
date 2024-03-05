@@ -1,0 +1,10 @@
+import os
+path = input("give me the path: ")
+exist = os.access(path, os.F_OK)
+read = os.access(path, os.R_OK)
+write = os.access(path, os.W_OK)
+executabilty = os.access(path, os.X_OK)
+print("The file exists:", exist)
+print("WE can read the file:", read)
+print("We can write in file:", write)
+print("Can be executed:", executabilty)

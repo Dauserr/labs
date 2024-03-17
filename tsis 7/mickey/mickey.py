@@ -17,7 +17,6 @@ current_seconds = current_time.second
 print("Current Minutes:", current_minutes)
 print("Current Seconds:", current_seconds)
 
-clock = pygame.time.Clock()
 while gameon:
     screen.fill((255,255,255))
 
@@ -52,4 +51,3 @@ while gameon:
     #seconds -= 6
     #minutes -= 6/60
     pygame.display.flip()
-    clock.tick(165) # smooth

@@ -38,6 +38,7 @@ font = pygame.font.SysFont("Score", 30)
 font2 = pygame.font.SysFont("Level", 30)
 
 minus = 0
+myevent = pygame.USEREVENT + 1
 while gameon:
     FPS.tick(60)
     pygame.time.delay(100-int(minus))
@@ -51,6 +52,8 @@ while gameon:
 
 
     for event in pygame.event.get():
+        if event.type == myevent:
+            applex,appley = randomapple()
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_UP and direction != "DOWN":
                 direction = "UP"
@@ -79,10 +82,14 @@ while gameon:
 
     if pygame.Rect(*snake[0],10,10).colliderect(apple): # * for unpacking, pygame.rect for collision
         applex,appley = randomapple()
-        counter += 1
-        if counter % 5 == 0 :
-            level += 1
-            minus += 2.5
+        num = random.randint(1,3)
+        for i in range(0,num):
+            counter += 1
+            if counter % 5 == 0 :
+                level += 1
+                minus += 2.5
+
+        pygame.time.set_timer(myevent, 1000)
     else:
         snake.pop()
 

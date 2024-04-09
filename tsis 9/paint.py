@@ -1,3 +1,4 @@
+from turtle import pos
 import pygame
 
 def main():
@@ -45,10 +46,18 @@ def main():
                 elif event.key == pygame.K_e:
                     mode = (0,0,0)
 
-                if event.key == pygame.K_a:
+                if event.key == pygame.K_a: #rect
                     pygame.draw.rect(screen, mode, (position[0],position[1], radius*2.5, radius*2))
-                elif event.key == pygame.K_c:
+                elif event.key == pygame.K_c:# circle
                     pygame.draw.circle(screen,mode,position,radius*2)
+                elif event.key == pygame.K_s: # square
+                    pygame.draw.rect(screen, mode, (position[0],position[1], radius*2, radius*2))
+                elif event.key == pygame.K_e: # equilateral triangle
+                    pygame.draw.polygon(screen, mode, ((position[0]+50,position[1]+50),(position[0],position[1]-50),(position[0]-50,position[1]+50)))
+                elif event.key == pygame.K_t: #right triangle
+                    pygame.draw.polygon(screen, mode, ((position[0],position[1]),(position[0],position[1]-70),(position[0]-50,position[1])))
+                elif event.key == pygame.K_h: #rhombus
+                    pygame.draw.polygon(screen, mode, ((position[0],position[1]-50),(position[0]+50,position[1]),(position[0],position[1]+50), (position[0]-50,position[1])))
 
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if event.button == 1: # left click grows radius
@@ -95,9 +104,7 @@ def drawLineBetween(screen, index, start, end, width, color_mode):
         x = int(aprogress * start[0] + progress * end[0])
         y = int(aprogress * start[1] + progress * end[1])
         pygame.draw.circle(screen, color, (x, y), width)
-
     """
     i have commented my code
     """
-
 main()

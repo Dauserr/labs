@@ -89,7 +89,7 @@ while gameon:
                 level += 1
                 minus += 2.5
 
-        pygame.time.set_timer(myevent, 1000)
+        pygame.time.set_timer(myevent, 20000) # every 20 seconds respawn apple
     else:
         snake.pop()
 

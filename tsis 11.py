@@ -167,6 +167,24 @@ def many(conn, name, phone_number, email,address):
         if cur:
             cur.close()
 
+def pagination(conn, phonebook, limit, offset):
+    try:
+        #cursor object creating
+        cur = conn.cursor()
+
+        query = f"SELECT * FROM {phonebook} LIMIT %s OFFSET %s;"
+        cur.execute(query, (limit, offset))
+
+        rows = cur.fetchall()
+
+        return rows
+
+    except (psycopg2.DatabaseError, Exception) as error:
+        print("Error while inserting or updating many data: ", error)
+    finally:
+        if cur:
+            cur.close()
+
 if __name__ == '__main__':
     config = load_config()
 
@@ -192,6 +210,12 @@ if __name__ == '__main__':
         #delete_data(conn, "name = Daulet Serikbayev") or "phone number = +77772030403"
 
 
+        #pagination
+        results = pagination(conn, "phonebook",10,0)
+
+        if results:
+            for row in results:
+                print(row)
 
     except (psycopg2.DatabaseError, Exception) as error:
         print("error while connecting to the postgresql server: ", error)

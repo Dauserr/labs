@@ -153,7 +153,19 @@ def creupd(conn, name, phone_number, email,address):
         if cur:
             cur.close()
 
-
+def many(conn, name, phone_number, email,address):
+    try:
+        #cursor object creating
+        cur = conn.cursor()
+        if len(phone_number)==12:
+            creupd(conn, name, phone_number, email,address)
+        else:
+            print("The phone number is incorrect! ")
+    except (psycopg2.DatabaseError, Exception) as error:
+        print("Error while inserting or updating many data: ", error)
+    finally:
+        if cur:
+            cur.close()
 
 if __name__ == '__main__':
     config = load_config()
@@ -162,7 +174,15 @@ if __name__ == '__main__':
         conn = psycopg2.connect(**config)
         print("connected to the postgresql server")
 
-        creupd(conn,"Serikbayev Daulet","d_serikbayev@kbtu.kz","+77772030403","32 makataeva st")
+        #upd or ins
+        #creupd(conn,"Serikbayev Daulet","+77772030403","d_serikbayev@kbtu.kz","32 makataeva st")
+
+
+        #many times upd
+        #n = int(input("how many times you want to add? "))
+        #for i in range(0,n):
+        #    many(conn,input("Name: "),input("email: "),input("phone number: "),input("address: "))
+        #    n+=1
 
 
         #records based on a pattern

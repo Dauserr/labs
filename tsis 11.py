@@ -188,6 +188,9 @@ if __name__ == '__main__':
         #records based on a pattern
         #query_data(conn, "Name = 'Serikbayev Daulet'")
 
+        #delete by name or phone
+        #delete_data(conn, "name = Daulet Serikbayev") or "phone number = +77772030403"
+
 
 
     except (psycopg2.DatabaseError, Exception) as error:
